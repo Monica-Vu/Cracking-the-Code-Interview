@@ -202,9 +202,111 @@ Time Complexity: O(n) because it needs to loop through all the nodes of the list
 3. Free memory for node to be deleted 
 ![alt text](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2014/05/Linkedlist_deletion.png)
 
+```
+/* Given a key, deletes the first occurrence of key in linked list */
+    void deleteNode(int key) 
+    { 
+        // Store head node 
+        Node temp = head, prev = null; 
+  
+        // If head node itself holds the key to be deleted 
+        if (temp != null && temp.data == key) 
+        { 
+            head = temp.next; // Changed head 
+            return; 
+        } 
+  
+        // Search for the key to be deleted, keep track of the 
+        // previous node as we need to change temp.next 
+        while (temp != null && temp.data != key) 
+        { 
+            prev = temp; 
+            temp = temp.next; 
+        }     
+  
+        // If key was not present in linked list 
+        if (temp == null) return; 
+  
+        // Unlink the node from linked list 
+        prev.next = temp.next; 
+    } 
+```
+
+```
+# Given a reference to the head of a list and a key,  
+    # delete the first occurence of key in linked list  
+    def deleteNode(self, key):  
+          
+        # Store head node  
+        temp = self.head  
+  
+        # If head node itself holds the key to be deleted  
+        if (temp is not None):  
+            if (temp.data == key):  
+                self.head = temp.next
+                temp = None
+                return
+  
+        # Search for the key to be deleted, keep track of the  
+        # previous node as we need to change 'prev.next'  
+        while(temp is not None):  
+            if temp.data == key:  
+                break
+            prev = temp  
+            temp = temp.next
+  
+        # if key was not present in linked list  
+        if(temp == None):  
+            return
+  
+        # Unlink the node from linked list  
+        prev.next = temp.next
+  
+        temp = None
+```
+#### PRINT LINKED LIST
+```
+  /* This function prints contents of linked list starting from 
+        the given node */
+    public void printList() 
+    { 
+        Node tnode = head; 
+        while (tnode != null) 
+        { 
+            System.out.print(tnode.data+" "); 
+            tnode = tnode.next; 
+        } 
+    } 
+```
+```
+    def printList(self):  
+        temp = self.head  
+        while(temp):  
+            print (" %d" %(temp.data)),  
+            temp = temp.next
+```
 ## DOUBLY
 * Each node has a pointer to the next node and the previous node 
 ![alt text](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2014/03/DLL1.png)
+
+* A doubly linked list has a similiar structure to a singly link but there's also a pointer to the previous node 
+* When you add or delete, you have to change the pointers too. 
+
+### ADDING TO EMPTY LIST
+* Set node as head (and tail) with previous and next pointers as null 
+
+### ADDING AT THE FRONT
+* Set node's next as the head
+* Set node's previous as null
+* Set node as head
+
+### ADDING IN THE MIDDLE
+* Set new node's next as previous's next
+* Set new node's previous as previous node 
+* Set previous old next's previous as new node
+* Set previous' node's next as new node 
+
+### ADDING AT THE END
 
 ## CIRCULAR
 * Last node points to head of list 
