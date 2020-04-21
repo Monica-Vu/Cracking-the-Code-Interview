@@ -12,6 +12,17 @@ Root: topmost node <br/>
 Children: elements under a given element <br/>
 Ancestors: elements that are on top of the node <br/>
 Leaves: elements with no children/bottom of tree <br/>
+Depth: length from one node to another
+```
+    int depth(Node u) {
+        int d = 0;
+        while (u != r) {
+            u = u.parent;
+            d++;
+        }
+        return d;
+    }
+```
 
 ## Advantages
 * Store info that naturally forms a hierarchy ex/ file system
@@ -36,24 +47,62 @@ Leaves: elements with no children/bottom of tree <br/>
 ## Implementation
 ### Node
 ```
-# A Python class that represents an individual node in a Binary Tree 
-class Node: 
-    def __init__(self,key): 
-        self.left = None
-        self.right = None
-        self.val = key 
+    class BTNode<Node extends BTNode<Node>> {
+        Node left;
+        Node right;
+        Node parent;    
+    }
 ```
 
+### Binary Tree 
 ```
-// Class containing left and right child of current  node and key value 
-class Node  { 
-    int key; 
-    Node left, right; 
-  
-    public Node(int item) 
-    { 
-        key = item; 
-        left = right = null; 
-    } 
-}
+  Node r;
+```
+
+### Find number of nodes in a tree
+```
+    int size(Node u) {
+        if (u == nil) return 0;
+        return 1 + size(u.left) + size(u.right);
+    }
+```
+
+### Find tree height 
+```
+    int height(Node u) {
+        if (u == nil) return -1;
+        return 1 + Math.max(height(u.left), height(u.right));
+    }
+```
+
+### Traversing Binary Trees
+```
+    void traverse(Node u) {
+        if (u == nil) return;
+        traverse(u.left);
+        traverse(u.right);
+    }
+```
+* Problem: height can be tall, which can can a stack overflow due to recursion 
+
+### Traversing Binary Trees (No Recursion)
+* Parent -> Left -> Right -> Left -> Right -> . . . -> Parent 
+```
+    void traverse2() {
+        Node u = r, prev = nil, next;
+        while (u != nil) {
+            if (prev == u.parent) {
+                if (u.left != nil) next = u.left;
+                else if (u.right != nil) next = u.right;
+                else next = u.parent;
+            } else if (prev == u.left) {
+                if (u.right != nil) next = u.right;
+                else next = u.parent;
+            } else {
+                next = u.parent;
+            }
+            prev = u;
+            u = next;
+        }
+    }
 ```
