@@ -1,21 +1,17 @@
-# Technical Preparation
-* Understand how to implement each topic, uses, space & time complexity 
-* For specific programming languages, look up the most common questions and make sure you have answers to them 
-
-## LINKED LISTS
+# LINKED LISTS
 * A dynamic data structure can grow & shrink dynamically using nodes 
 * Each node has a pointer to the next node and data 
 
-### Disadvantages
+## Disadvantages
 * Does not allow direct access to individual elements (need to start at head or tail) and follow the reference
 * Use more memory than array (4 extra bytes on 32-bit system)
 
-### SINGLY
+## SINGLY
 * Each node has a pointer to the next node
 ![alt text](https://www.java2novice.com/images/linked_list.png)
 
-#### Implementation 
-##### NODE
+### Implementation 
+#### NODE
 ```
 // JAVA
 //  Linked List Class 
@@ -52,7 +48,7 @@ class LinkedList:
         self.head = None
 
 ```
-##### INSERTING AT THE START
+#### INSERTING AT THE START
 1. Allocate the new node and insert data
 2. Set the new node's next as "head"
 3. Set head to new node 
@@ -89,10 +85,10 @@ def push(self, new_data):
 ```
 
 
-### DOUBLY
+## DOUBLY
 * Each node has a pointer to the next node and the previous node 
 ![alt text](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2014/03/DLL1.png)
 
-### CIRCULAR
+## CIRCULAR
 * Last node points to head of list 
 
